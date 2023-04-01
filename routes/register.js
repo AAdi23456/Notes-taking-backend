@@ -9,7 +9,12 @@ const jwt = require("jsonwebtoken")
 
 reg_routes.post("/", async (req, res) => {
   const { name, email, password } = req.body
+
   try {
+    const user = await reg_model.findOne({ email }) // check if email exists in the database
+    if (user) {
+      return res.status(400).json({ error: "Email already registered" })
+    }
     bcrypt.hash(password, 8, async (err, hash) => {
       const datatodb = new reg_model({ name, email, password: hash })
       await datatodb.save()
