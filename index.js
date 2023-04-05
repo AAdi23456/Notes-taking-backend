@@ -9,8 +9,8 @@ const auth = require("./middlewares/middleware")
 app.use(cors())
 app.use("/getnotes", get_route)
 app.use("/add", reg_routes)
-app.use("/login", login_rout)
-app.use("/update", get_route)
+app.use("/login", login_rout);
+app.use("/update", get_route);
 app.use("/delete", get_route)
 app.use("/getdataById", notes_post)
 app.use(auth)
